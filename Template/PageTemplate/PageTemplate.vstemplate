@@ -1,0 +1,26 @@
+<VSTemplate Type="Item" Version="3.0.0"
+    xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
+	<TemplateData>
+		<Name>Zonit Create Page Template</Name>
+		<Description>Generates a Razor page with a code-behind file.</Description>
+		<ProjectType>CSharp</ProjectType>
+		<DefaultName>NewPage</DefaultName>
+		<ProvideDefaultName>true</ProvideDefaultName>
+		<NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
+		<Icon>TemplateIcon.ico</Icon>
+	</TemplateData>
+	
+	<TemplateContent>
+		<ProjectItem TargetFileName="$safeitemname$.razor" ReplaceParameters="true">PageTemplate.razor</ProjectItem>
+		<ProjectItem TargetFileName="$safeitemname$.razor.cs" ReplaceParameters="true">PageTemplate.razor.cs</ProjectItem>
+	</TemplateContent>
+	
+	<!--<CustomParameters>
+		<CustomParameter Name="Scenario" Value="IAreaWeb" />
+	</CustomParameters>
+
+	<WizardExtension>
+		<Assembly>Microsoft.VisualStudio.TemplateWizardInterface</Assembly>
+		<FullClassName>Zonit.Template.PageTemplate.SelectWizard</FullClassName>
+	</WizardExtension>-->
+</VSTemplate>

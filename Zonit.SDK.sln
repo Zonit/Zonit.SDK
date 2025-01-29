@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35521.163
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{E23732DE-E62A-44C3-8770-3BE606AF00A8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Template", "Template", "{E5DDE1B2-2FE8-411F-9165-F6FFF42DC3C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zonit.SDK.Website", "Source\Zonit.SDK.Website\Zonit.SDK.Website.csproj", "{EF1D162A-EF96-4834-AF8D-C1040FF53567}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PageTemplate", "PageTemplate", "{B9343EA2-7FE6-4D40-B907-84D559091313}"
+	ProjectSection(SolutionItems) = preProject
+		Template\PageTemplate\PageTemplate.razor = Template\PageTemplate\PageTemplate.razor
+		Template\PageTemplate\PageTemplate.razor.cs = Template\PageTemplate\PageTemplate.razor.cs
+		Template\PageTemplate\PageTemplate.vstemplate = Template\PageTemplate\PageTemplate.vstemplate
+		SelectWizard.cs = SelectWizard.cs
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EF1D162A-EF96-4834-AF8D-C1040FF53567}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF1D162A-EF96-4834-AF8D-C1040FF53567}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF1D162A-EF96-4834-AF8D-C1040FF53567}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF1D162A-EF96-4834-AF8D-C1040FF53567}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EF1D162A-EF96-4834-AF8D-C1040FF53567} = {E23732DE-E62A-44C3-8770-3BE606AF00A8}
+		{B9343EA2-7FE6-4D40-B907-84D559091313} = {E5DDE1B2-2FE8-411F-9165-F6FFF42DC3C2}
+	EndGlobalSection
+EndGlobal
