@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.12.35521.163
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{E23732DE-E62A-44C3-8770-3BE606AF00A8}"
+	ProjectSection(SolutionItems) = preProject
+		Source\Directory.Packages.props = Source\Directory.Packages.props
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Template", "Template", "{E5DDE1B2-2FE8-411F-9165-F6FFF42DC3C2}"
 EndProject
@@ -14,7 +17,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PageTemplate", "PageTemplat
 		Template\PageTemplate\PageTemplate.razor = Template\PageTemplate\PageTemplate.razor
 		Template\PageTemplate\PageTemplate.razor.cs = Template\PageTemplate\PageTemplate.razor.cs
 		Template\PageTemplate\PageTemplate.vstemplate = Template\PageTemplate\PageTemplate.vstemplate
-		SelectWizard.cs = SelectWizard.cs
 	EndProjectSection
 EndProject
 Global
