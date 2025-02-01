@@ -9,6 +9,7 @@
 		<PackageReference Include="Zonit.Extensions.Cultures.Abstractions" />
 		<PackageReference Include="Zonit.Extensions.Organizations.Abstractions" />
 		<PackageReference Include="Zonit.Extensions.Projects.Abstractions" />
+		<PackageReference Include="Zonit.Extensions.Website" />
 	</ItemGroup>
 
 </Project>
