@@ -13,7 +13,7 @@ public sealed partial class $safeitemname$ : PageComponent // IAreaWeb, IAreaMan
 
     public override List<BreadcrumbsModel>? Breadcrumbs =>
     [
-        new("Home", "/"),
+        new("Home", "Home"),
     ];
 
     protected override void OnInitialized()
