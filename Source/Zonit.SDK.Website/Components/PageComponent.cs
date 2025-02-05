@@ -8,7 +8,7 @@ public abstract class PageComponent : BaseComponent
     [Inject]
     protected IBreadcrumbsProvider BreadcrumbsProvider { get; set; } = default!;
 
-    public List<BreadcrumbsModel>? Breadcrumbs { get; set; }
+    public virtual List<BreadcrumbsModel>? Breadcrumbs { get; }
 
     protected override void OnInitialized()
     {

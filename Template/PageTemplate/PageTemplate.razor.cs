@@ -11,6 +11,11 @@ public sealed partial class $safeitemname$ : PageComponent // IAreaWeb, IAreaMan
 {
     public const string Route = "$safeitemname$";
 
+    public override List<BreadcrumbsModel>? Breadcrumbs =>
+    [
+        new("Home", "/"),
+    ];
+
     protected override void OnInitialized()
     {
         base.OnInitialized();
