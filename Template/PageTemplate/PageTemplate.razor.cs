@@ -9,9 +9,9 @@ namespace $rootnamespace$;
 [Route("/" + Route)]
 public sealed partial class $safeitemname$ : PageComponent // IAreaWeb, IAreaManager, IAreaManagement, IAreaDiagnostics
 {
-    public const string Route = "$safeitemname$";
+    private const string Route = "$safeitemname$";
 
-    public override List<BreadcrumbsModel>? Breadcrumbs =>
+    protected override List<BreadcrumbsModel>? Breadcrumbs =>
     [
         new("Home", "Home"),
     ];
