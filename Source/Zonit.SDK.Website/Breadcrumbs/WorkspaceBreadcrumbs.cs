@@ -6,5 +6,6 @@ public class WorkspaceBreadcrumbs : BreadcrumbsModel
 {
     public WorkspaceBreadcrumbs() : base("Workspace", "Workspace")
     {
+        Template = "workspace";
     }
 }

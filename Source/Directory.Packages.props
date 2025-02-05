@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <!--<PublishAot>true</PublishAot>
 		<IsAotCompatible>true</IsAotCompatible>-->
-    <AssemblyVersion>0.1.8</AssemblyVersion>
+    <AssemblyVersion>0.1.9</AssemblyVersion>
     <!-- Package info -->
     <FileVersion>$(AssemblyVersion)</FileVersion>
     <Version>$(AssemblyVersion)</Version>
@@ -30,6 +30,6 @@
     <PackageVersion Include="Zonit.Extensions.Cultures.Abstractions" Version="0.1.2" />
     <PackageVersion Include="Zonit.Extensions.Organizations.Abstractions" Version="0.1.7" />
     <PackageVersion Include="Zonit.Extensions.Projects.Abstractions" Version="0.1.4" />
-    <PackageVersion Include="Zonit.Extensions.Website" Version="0.0.37" />
+    <PackageVersion Include="Zonit.Extensions.Website" Version="0.0.41" />
   </ItemGroup>
 </Project>
