@@ -5,7 +5,7 @@ using Zonit.Extensions.Projects;
 
 namespace Zonit.SDK.Website;
 
-public abstract class BaseComponent : ComponentBase, IDisposable
+public abstract class Base : ComponentBase, IDisposable
 {
     private static bool UseCulture => true;
     private static bool UseWorkspace => true;
@@ -72,7 +72,7 @@ public abstract class BaseComponent : ComponentBase, IDisposable
         _disposed = true;
     }
 
-    ~BaseComponent() 
+    ~Base() 
         => Dispose(false);
 
     protected virtual void OnCultureChange()

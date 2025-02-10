@@ -3,7 +3,7 @@ using Zonit.Extensions.Website;
 
 namespace Zonit.SDK.Website;
 
-public abstract class PageComponent : BaseComponent
+public abstract class PageBase : Base
 {
     [Inject]
     protected IBreadcrumbsProvider BreadcrumbsProvider { get; set; } = default!;
