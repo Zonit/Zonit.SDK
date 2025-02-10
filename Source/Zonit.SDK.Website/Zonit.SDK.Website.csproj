@@ -6,6 +6,7 @@
 	
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Components" />
+		<PackageReference Include="MudBlazor" />
 		<PackageReference Include="Zonit.Extensions.Cultures.Abstractions" />
 		<PackageReference Include="Zonit.Extensions.Organizations.Abstractions" />
 		<PackageReference Include="Zonit.Extensions.Projects.Abstractions" />

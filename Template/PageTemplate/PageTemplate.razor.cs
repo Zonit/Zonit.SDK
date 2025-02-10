@@ -21,13 +21,13 @@ public sealed partial class $safeitemname$ : PageComponent // IAreaWeb, IAreaMan
         base.OnInitialized();
     }
 
-    protected override async Task OnParametersSetAsync()
-    {
-        await base.OnParametersSetAsync();
-    }
-
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await base.OnParametersSetAsync();
     }
 }

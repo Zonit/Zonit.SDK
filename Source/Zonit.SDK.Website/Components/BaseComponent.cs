@@ -5,11 +5,12 @@ using Zonit.Extensions.Projects;
 
 namespace Zonit.SDK.Website;
 
-public abstract class BaseComponent : ComponentBase
+public abstract class BaseComponent : ComponentBase, IDisposable
 {
     private static bool UseCulture => true;
     private static bool UseWorkspace => true;
     private static bool UseCatalog => true;
+    private bool _disposed;
 
     [Inject]
     protected ICultureProvider Culture { get; set; } = default!;
@@ -47,20 +48,36 @@ public abstract class BaseComponent : ComponentBase
 
     public void Dispose()
     {
-        if (_lazyCulture?.Value is not null)
-            _lazyCulture.Value.OnChange -= OnCultureChange;
-
-        if (_lazyWorkspace?.Value is not null)
-            _lazyWorkspace.Value.OnChange -= OnRefreshChangeAsync;
-
-        if (_lazyCatalog?.Value is not null)
-            _lazyCatalog.Value.OnChange -= OnRefreshChangeAsync;
+        Dispose(true);
+        GC.SuppressFinalize(this);
     }
+
+    protected virtual void Dispose(bool disposing)
+    {
+        if (_disposed)
+            return;
+
+        if (disposing)
+        {
+            if (_lazyCulture?.Value is not null)
+                _lazyCulture.Value.OnChange -= OnCultureChange;
+
+            if (_lazyWorkspace?.Value is not null)
+                _lazyWorkspace.Value.OnChange -= OnRefreshChangeAsync;
+
+            if (_lazyCatalog?.Value is not null)
+                _lazyCatalog.Value.OnChange -= OnRefreshChangeAsync;
+        }
+
+        _disposed = true;
+    }
+
+    ~BaseComponent() 
+        => Dispose(false);
 
     protected virtual void OnCultureChange()
-    {
-        StateHasChanged();
-    }
+        => StateHasChanged();
+    
 
     /// <summary>
     /// Klasa do ponownego przeładowania treści na stronie, danych np z bazy danych
