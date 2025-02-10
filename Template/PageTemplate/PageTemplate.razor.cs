@@ -7,7 +7,7 @@ namespace $rootnamespace$;
 
 [Authorize]
 [Route("/" + Route)]
-public sealed partial class $safeitemname$ : PageComponent // IAreaWeb, IAreaManager, IAreaManagement, IAreaDiagnostics
+public sealed partial class $safeitemname$ : PageComponent // IAreaWeb, IAreaManager, IAreaManagement, IAreaDiagnostic
 {
     public const string Route = "$safeitemname$";
 
