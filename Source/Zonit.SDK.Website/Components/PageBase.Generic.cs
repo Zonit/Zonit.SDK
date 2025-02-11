@@ -26,33 +26,6 @@ public abstract class PageBase<TViewModel> : PageBase where TViewModel : class, 
         ValidationMessages = new ValidationMessageStore(EditContext);
     }
 
-    private void HandleValidationRequested(object? sender, ValidationRequestedEventArgs e)
-    {
-        if (Model is null || EditContext is null)
-            return;
-
-        ValidationMessages?.Clear();
-
-        var validationResults = new List<ValidationResult>();
-        var validationContext = new ValidationContext(Model);
-
-        bool isValid = Validator.TryValidateObject(Model, validationContext, validationResults, true);
-
-        if (!isValid)
-        {
-            foreach (var validationResult in validationResults)
-            {
-                foreach (var memberName in validationResult.MemberNames)
-                {
-                    var field = EditContext.Field(memberName);
-                    ValidationMessages?.Add(field, Culture.Translate(validationResult.ErrorMessage!));      // Translate
-                }
-            }
-        }
-
-        EditContext.NotifyValidationStateChanged();
-    }
-
     protected virtual void OnModelChanged(object? sender, FieldChangedEventArgs e)
         => StateHasChanged();
 
@@ -100,6 +73,33 @@ public abstract class PageBase<TViewModel> : PageBase where TViewModel : class, 
         ValidationMessages?.Add(field, message);
     }
 
+    private void HandleValidationRequested(object? sender, ValidationRequestedEventArgs e)
+    {
+        if (Model is null || EditContext is null)
+            return;
+
+        ValidationMessages?.Clear();
+
+        var validationResults = new List<ValidationResult>();
+        var validationContext = new ValidationContext(Model);
+
+        bool isValid = Validator.TryValidateObject(Model, validationContext, validationResults, true);
+
+        if (!isValid)
+        {
+            foreach (var validationResult in validationResults)
+            {
+                foreach (var memberName in validationResult.MemberNames)
+                {
+                    var field = EditContext.Field(memberName);
+                    ValidationMessages?.Add(field, Culture.Translate(validationResult.ErrorMessage!));      // Translate
+                }
+            }
+        }
+
+        EditContext.NotifyValidationStateChanged();
+    }
+
     private IEnumerable<string?> GetValidationErrors()
     {
         if (Model is null)
@@ -112,7 +112,6 @@ public abstract class PageBase<TViewModel> : PageBase where TViewModel : class, 
 
         return validationResults.Select(result => result.ErrorMessage);
     }
-
 
     protected override void Dispose(bool disposing)
     {
