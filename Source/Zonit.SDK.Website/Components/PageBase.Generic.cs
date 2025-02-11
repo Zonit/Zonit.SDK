@@ -10,7 +10,7 @@ public abstract class PageBase<TViewModel> : PageBase where TViewModel : class, 
     protected TViewModel? Model { get; set; }
     protected EditContext? EditContext { get; private set; }
     protected ValidationMessageStore? ValidationMessages { get; private set; }
-    protected bool Processing { get; set; }
+    protected bool Processing { get; set; } = false;
     public bool IsValid => EditContext?.Validate() ?? false;
 
     protected override void OnInitialized()
@@ -57,7 +57,7 @@ public abstract class PageBase<TViewModel> : PageBase where TViewModel : class, 
         => StateHasChanged();
 
     protected virtual void HandleInvalidSubmit(string message) { }
-    protected virtual async Task HandleValidSubmitAsync() { await Task.CompletedTask; }
+    protected virtual async Task SubmitAsync() { await Task.CompletedTask; }
 
     public async Task HandleValidSubmit(EditContext editContext)
     {
@@ -66,7 +66,7 @@ public abstract class PageBase<TViewModel> : PageBase where TViewModel : class, 
 
         Processing = true;
 
-        await HandleValidSubmitAsync();
+        await SubmitAsync();
 
         Processing = false;
     }
