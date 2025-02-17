@@ -46,13 +46,17 @@ public abstract class PageBase<TViewModel> : PageBase where TViewModel : class, 
 
     public void HandleInvalidSubmit()
     {
-        foreach (var error in GetValidationErrors())
+        if (EditContext is null)
+            return;
+        
+        var messages = EditContext.GetValidationMessages();
+
+        foreach (var error in messages)
         {
-            if (error is null)
+            if (string.IsNullOrEmpty(error))
                 continue;
 
             var message = Culture.Translate(error);
-
             HandleInvalidSubmit(message);
         }
     }
@@ -98,19 +102,6 @@ public abstract class PageBase<TViewModel> : PageBase where TViewModel : class, 
         }
 
         EditContext.NotifyValidationStateChanged();
-    }
-
-    private IEnumerable<string?> GetValidationErrors()
-    {
-        if (Model is null)
-            return [];
-
-        var validationContext = new ValidationContext(Model, serviceProvider: null, items: null);
-        var validationResults = new List<ValidationResult>();
-
-        Validator.TryValidateObject(Model, validationContext, validationResults, validateAllProperties: true);
-
-        return validationResults.Select(result => result.ErrorMessage);
     }
 
     protected override void Dispose(bool disposing)
