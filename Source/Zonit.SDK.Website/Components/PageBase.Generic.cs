@@ -11,19 +11,38 @@ public abstract class PageBase<TViewModel> : PageBase where TViewModel : class, 
     protected EditContext? EditContext { get; private set; }
     protected ValidationMessageStore? ValidationMessages { get; private set; }
     protected bool Processing { get; set; } = false;
-    public bool IsValid => EditContext?.Validate() ?? false;
+    public bool IsValid => EditContext?.GetValidationMessages().Any() is false;
 
     protected override void OnInitialized()
     {
+        InitializeEditContext();
         base.OnInitialized();
+    }
 
+    protected override void OnParametersSet()
+    {
+        InitializeEditContext();
+        base.OnParametersSet();
+    }
+
+    private void InitializeEditContext()
+    {
         Model ??= new TViewModel();
 
-        EditContext = new EditContext(Model);
-        EditContext.OnFieldChanged += OnModelChanged;
-        EditContext.OnValidationRequested += HandleValidationRequested;
+        if (EditContext == null || !ReferenceEquals(EditContext.Model, Model))
+        {
+            // Jeśli istnieje poprzedni EditContext, odsubskrybuj zdarzenia
+            if (EditContext is not null)
+            {
+                EditContext.OnFieldChanged -= OnModelChanged;
+                EditContext.OnValidationRequested -= HandleValidationRequested;
+            }
 
-        ValidationMessages = new ValidationMessageStore(EditContext);
+            EditContext = new EditContext(Model);
+            EditContext.OnFieldChanged += OnModelChanged;
+            EditContext.OnValidationRequested += HandleValidationRequested;
+            ValidationMessages = new ValidationMessageStore(EditContext);
+        }
     }
 
     protected virtual void OnModelChanged(object? sender, FieldChangedEventArgs e)
@@ -48,23 +67,32 @@ public abstract class PageBase<TViewModel> : PageBase where TViewModel : class, 
     {
         if (EditContext is null)
             return;
-        
+
         var messages = EditContext.GetValidationMessages();
 
         foreach (var error in messages)
         {
-            if (string.IsNullOrEmpty(error))
+            if (error is null)
                 continue;
 
             var message = Culture.Translate(error);
+
             HandleInvalidSubmit(message);
         }
     }
 
     public void ResetModel()
     {
-        Model = new();
+        if (EditContext is not null)
+        {
+            EditContext.OnFieldChanged -= OnModelChanged;
+            EditContext.OnValidationRequested -= HandleValidationRequested;
+        }
+
+        Model = new TViewModel();
         EditContext = new EditContext(Model);
+        EditContext.OnFieldChanged += OnModelChanged;
+        EditContext.OnValidationRequested += HandleValidationRequested;
         ValidationMessages = new ValidationMessageStore(EditContext);
     }
 
@@ -106,14 +134,14 @@ public abstract class PageBase<TViewModel> : PageBase where TViewModel : class, 
 
     protected override void Dispose(bool disposing)
     {
-        base.Dispose(disposing);
-
-        if (EditContext is not null)
+        if (disposing && EditContext is not null)
         {
             EditContext.OnFieldChanged -= OnModelChanged;
             EditContext.OnValidationRequested -= HandleValidationRequested;
             ValidationMessages?.Clear();
             ValidationMessages = null;
         }
+
+        base.Dispose(disposing);
     }
 }
