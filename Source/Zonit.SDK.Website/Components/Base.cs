@@ -29,7 +29,7 @@ public abstract class Base : ComponentBase, IDisposable
     protected IOrganizationManager OrganizationManager { get; set; } = default!;
 
     [Inject]
-    protected Lazy<IUserProvider> UserManager { get; set; } = default!;
+    protected IUserProvider UserManager { get; set; } = default!;
 
     private Lazy<ICultureProvider>? _lazyCulture;
     private Lazy<IWorkspaceProvider>? _lazyWorkspace;
