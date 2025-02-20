@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Zonit.Extensions.Cultures;
+using Zonit.Extensions.Identity;
 using Zonit.Extensions.Organizations;
 using Zonit.Extensions.Projects;
 
@@ -20,6 +21,15 @@ public abstract class Base : ComponentBase, IDisposable
 
     [Inject]
     protected ICatalogProvider Catalog { get; set; } = default!;
+
+    [Inject]
+    protected IAuthenticatedProvider Authenticated { get; set; } = default!;
+
+    [Inject]
+    protected IOrganizationManager OrganizationManager { get; set; } = default!;
+
+    [Inject]
+    protected Lazy<IUserProvider> UserManager { get; set; } = default!;
 
     private Lazy<ICultureProvider>? _lazyCulture;
     private Lazy<IWorkspaceProvider>? _lazyWorkspace;

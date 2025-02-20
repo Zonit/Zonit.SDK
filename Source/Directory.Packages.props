@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <!--<PublishAot>true</PublishAot>
 		<IsAotCompatible>true</IsAotCompatible>-->
-    <AssemblyVersion>0.1.14</AssemblyVersion>
+    <AssemblyVersion>0.1.15</AssemblyVersion>
     <!-- Package info -->
     <FileVersion>$(AssemblyVersion)</FileVersion>
     <Version>$(AssemblyVersion)</Version>
@@ -29,8 +29,9 @@
   <ItemGroup>
     <PackageVersion Include="Zonit.Extensions.Cultures.Abstractions" Version="0.1.2" />
     <PackageVersion Include="Zonit.Extensions.Organizations.Abstractions" Version="0.1.7" />
-    <PackageVersion Include="Zonit.Extensions.Projects.Abstractions" Version="0.1.4" />
-    <PackageVersion Include="Zonit.Extensions.Website" Version="0.0.41" />
+	  <PackageVersion Include="Zonit.Extensions.Identity.Abstractions" Version="0.1.6" />
+	  <PackageVersion Include="Zonit.Extensions.Projects.Abstractions" Version="0.1.4" />
+	  <PackageVersion Include="Zonit.Extensions.Website" Version="0.0.41" />
     <PackageVersion Include="MudBlazor" Version="8.2.0" />
   </ItemGroup>
 </Project>
